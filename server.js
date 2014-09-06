@@ -1,10 +1,14 @@
-var http = require('http');
+var fs = require('fs');
 
-http.createServer(function (req, res) {
-  	
-  	res.writeHead(200, {'Content-Type': 'text/plain'});
-  	res.end('Hello World\n');
+var express = require('express');
+var app = express();
 
-}).listen(8080, '0.0.0.0');
+app.use(express.static(__dirname + '/public'));
 
-console.log('Server running at http://0.0.0.0:8080/');
+app.get('/test/:test', function(req, res) {
+	res.send(req.params.test);
+});
+
+
+
+app.listen(8080);
